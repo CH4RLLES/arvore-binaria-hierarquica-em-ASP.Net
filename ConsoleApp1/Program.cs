@@ -2,49 +2,49 @@
 {
     public static void Main(string[] args)
     {
-        ManagePersonTree();
+        Arvore();
         Console.ReadKey();
 
     }
 
-    public static void ManagePersonTree()
+    public static void Arvore()
     {
-        Person P1 = new Person("A");
-        Person P2 = new Person("B");
-        Person P3 = new Person("C");
-        Person P4 = new Person("D");
-        Person P5 = new Person("E");
-        Person P6 = new Person("F");
-        Person P7 = new Person("G");
-        Person P8 = new Person("H");
+        Pessoa P1 = new Pessoa("A");
+        Pessoa P2 = new Pessoa("B");
+        Pessoa P3 = new Pessoa("C");
+        Pessoa P4 = new Pessoa("D");
+        Pessoa P5 = new Pessoa("E");
+        Pessoa P6 = new Pessoa("F");
+        Pessoa P7 = new Pessoa("G");
+        Pessoa P8 = new Pessoa("H");
 
-        P1.Childs.AddRange(new[] {P2, P3});
-        P2.Childs.AddRange(new[] {P4, P7});
-        P3.Childs.AddRange(new[] {P5, P8});
-        P5.Childs.Add(P6);
+        P1.Filhos.AddRange(new[] {P2, P3});
+        P2.Filhos.AddRange(new[] {P4, P7});
+        P3.Filhos.AddRange(new[] {P5, P8});
+        P5.Filhos.Add(P6);
         
 
         Console.WriteLine("\n Mostrar a avore \n");
-        PrintFamilyTree(P1, 0);
+        PrintArvore(P1, 0);
     }
 
     
 
-    private static void PrintFamilyTree(Person nd, int level)
+    private static void PrintArvore(Pessoa nd, int level)
     {
         
         if (nd != null)
         {
-            Console.WriteLine(GetSpace(level) + nd.Name);
+            Console.WriteLine(IncluirSpace(level) + nd.Nome);
             level++;
-            foreach (var item in nd.Childs)
+            foreach (var item in nd.Filhos)
             {
-                PrintFamilyTree(item, level);
+                PrintArvore(item, level);
             }
         }
     }
 
-    static string GetSpace(int level)
+    static string IncluirSpace(int level)
     {
         string space = "";
         for (int i = 0; i < level; i++)
@@ -54,13 +54,13 @@
         return space;
     }
 
-    public class Person
+    public class Pessoa
     {
-        public string Name = string.Empty;
-        public Person(string name)
+        public string Nome = string.Empty;
+        public Pessoa(string nome)
         {
-            Name = name;
+            Nome = nome;
         }
-        public List<Person> Childs = new List<Person>();
+        public List<Pessoa> Filhos = new List<Pessoa>();
     }
 }
